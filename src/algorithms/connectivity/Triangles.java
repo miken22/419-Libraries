@@ -1,11 +1,6 @@
 package algorithms.connectivity;
 
-import core.components.Edge;
-import core.components.Vertex;
-import core.visualizer.Visualizer;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
-import generators.random.Barabasi;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,7 +9,9 @@ import java.util.HashSet;
 
 /**
  * Count the number of triangles in a graph using
- * node iteration.
+ * node iteration. Based on the paper available at
+ * http://i11www.iti.uni-karlsruhe.de/extra/publications/sw-fclt-05_wea.pdf
+ * by Thomas Schank and Dorothea Wagner.
  *
  * @author Mike Nowicki on 08/11/15.
  */
