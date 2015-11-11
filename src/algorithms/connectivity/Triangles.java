@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
+ * Methods to implement Task 4 of Assignment 3
+ *
  * Count the number of triangles in a graph using
  * node iteration. Based on the paper available at
  * http://i11www.iti.uni-karlsruhe.de/extra/publications/sw-fclt-05_wea.pdf
@@ -69,11 +71,28 @@ public class Triangles<V,E> {
     }
 
     /**
-     * Private comparator that orders vertices based on their degree.
+     * TODO: Figoure out what this algorithm is.
+     *
+     * @param graph The graph.
+     * @param edge The edge to count in triangles.
+     * @param <V> The vertex type.
+     * @param <E> The edge type.
+     * @return The number of triangles an edge is involved in.
+     */
+    public static<V,E> Integer edgeTriangles(Graph<V,E> graph, E edge) {
+
+
+        return 0;
+    }
+
+    /**
+     * Comparator that orders vertices based on their degree. Also
+     * used by DegreeDist.
+     *
      * @param <T> The vertex type.
      * @param <E> The edge type.
      */
-    private static class VertexComparator<T,E> implements Comparator<T> {
+    public static class VertexComparator<T,E> implements Comparator<T> {
         private Graph<T,E> graph;
 
         public VertexComparator(Graph<T,E> graph) {
@@ -97,7 +116,7 @@ public class Triangles<V,E> {
 
 //    public static void main(String[] args) {
 //
-////        Graph<Vertex, Edge> graph = Barabasi.getGraph(5, 50);
+//        Graph<Vertex, Edge> graph = Barabasi.getGraph(5, 50);
 //
 //        Graph<Vertex, Edge> graph = new SparseGraph<>();//Barabasi.getGraph(5, 50);
 //        Vertex v1 = new Vertex("1");
