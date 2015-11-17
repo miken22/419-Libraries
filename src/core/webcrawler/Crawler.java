@@ -62,7 +62,7 @@ public class Crawler {
 
 			URL url;
 			try {
-				url = new URL("http://ichart.yahoo.com/table.csv?s=" + company.toUpperCase() + ".TO&a=0&b=1&c=1950&d=4&e=1&f=2015&g=d&ignore=.csv");
+				url = new URL("http://ichart.yahoo.com/table.csv?s=" + company.toUpperCase() + ".TO&a=0&b=1&c=1950&d=11&e=1&f=2015&g=d&ignore=.csv");
 				FileUtils.copyURLToFile(url, historyData);
 			} catch (IOException e) {
 				e.printStackTrace();

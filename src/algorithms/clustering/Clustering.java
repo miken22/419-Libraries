@@ -120,7 +120,7 @@ public class Clustering<V, E> {
 //    public static void main(String[] args) {
 //        Graph<Vertex, Edge> graph = new Erdos<>().getGraph(0.1, 50);
 //        Vertex v = Tools.getVertex(graph, "2");
-//        System.out.println(Clustering.clusterCoefficient(graph, v));
+//        System.out.println(Clustering.coefficient(graph, v));
 //    }
 
 }
