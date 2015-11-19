@@ -2,6 +2,7 @@ package core.stocks;
 
 import core.components.Edge;
 import core.components.Vertex;
+import core.webcrawler.Crawler;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 
@@ -33,8 +34,8 @@ public class StockGraphBuilder {
 
 		// Use this to get the stock information. It won't crawl if it has
 		// been run in the last 24 hours.
-//		Crawler crawler = new Crawler();
-//		crawler.crawl();
+		Crawler crawler = new Crawler();
+		crawler.crawl();
 
 		Collection<StockVertex> vertices = builder.getStockVertices();
 
