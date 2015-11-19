@@ -20,7 +20,7 @@ import java.util.HashSet;
 public class Triangles<V,E> {
 
     /**
-     * Computes the number of triangles in a graph using the node
+     * Computes the number of triangles in a graph using a node
      * iteration technique.
      *
      * @param graph The graph to do the search on.
@@ -71,7 +71,6 @@ public class Triangles<V,E> {
     }
 
     /**
-     * TODO: Figoure out what this algorithm is.
      *
      * @param graph The graph.
      * @param edge The edge to count in triangles.

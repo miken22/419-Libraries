@@ -6,8 +6,8 @@ public class StockEdge extends Edge {
 
 	private double correlationCoefficient;
 	
-	private StockVertex v1;
-	private StockVertex v2;
+	private Company v1;
+	private Company v2;
 	
 	public StockEdge() {
 		correlationCoefficient = 0;
@@ -17,7 +17,7 @@ public class StockEdge extends Edge {
 		this.correlationCoefficient = coeff;
 	}
 	
-	public StockEdge(double coeff, StockVertex v1, StockVertex v2) {
+	public StockEdge(double coeff, Company v1, Company v2) {
 		this.correlationCoefficient = coeff;
 		this.v1 = v1;
 		this.v2 = v2;
@@ -31,11 +31,11 @@ public class StockEdge extends Edge {
 		return correlationCoefficient;
 	}
 	
-	public StockVertex getV1() {
+	public Company getV1() {
 		return v1;
 	}
 
-	public StockVertex getV2() {
+	public Company getV2() {
 		return v2;
 	}
 }

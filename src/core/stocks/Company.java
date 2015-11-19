@@ -4,7 +4,10 @@ import core.components.Vertex;
 
 import java.util.Arrays;
 
-public class StockVertex extends Vertex {
+/**
+ * The TSX Company class storing their financial data.
+ */
+public class Company extends Vertex {
 
 	private double[] dataPoints;
 	private int index;
@@ -16,7 +19,7 @@ public class StockVertex extends Vertex {
 
 	private String company;
 
-	public StockVertex() {
+	public Company() {
 		dataPoints = new double[140];
 		index = 0;
 		average = 0;
@@ -24,7 +27,7 @@ public class StockVertex extends Vertex {
 		min = Integer.MAX_VALUE;
 	}
 
-	public StockVertex(String company, int dataSize) {
+	public Company(String company, int dataSize) {
 		dataPoints = new double[dataSize];
 		index = 0;
 		average = 0;
@@ -104,7 +107,7 @@ public class StockVertex extends Vertex {
 	@Override
 	public boolean equals(Object otherVertex) {
 
-		StockVertex v = (StockVertex)otherVertex;
+		Company v = (Company)otherVertex;
 
 		return Arrays.equals(this.dataPoints, v.getDataPoints());
 	}

@@ -43,7 +43,7 @@ public class Crawler {
 		// If they exist, check that we have 60 and that we got data > 24 hours ago
 		if (results.length != 0 && results.length == TSXCompanies.COMPANIES.length) {
 
-			Long lastChanged = resultFolder.lastModified();
+			Long lastChanged = results[0].lastModified();
 			Date today = new Date();
 			Long todayMilli = today.getTime();
 			
