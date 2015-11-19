@@ -28,8 +28,8 @@ public class Main {
 
         // Use this to get the stock information. It won't crawl if it has
         // been run in the last 24 hours.
-//		Crawler crawler = new Crawler();
-//		crawler.crawl();
+		Crawler crawler = new Crawler();
+		crawler.crawl();
 
         System.out.println("Enter a companies TSX symbol to view its visiblity graph.\n" +
                            "Enter H to view the company list.");
@@ -39,14 +39,14 @@ public class Main {
 
         while (!Arrays.asList(TSXCompanies.COMPANIES).contains(input)) {
 
-            if (input.equals('H')) {
+            if (input.equals("H")) {
                 for (String comp : TSXCompanies.COMPANIES) {
                     System.out.println(comp);
                 }
             }
 
             System.out.println("Enter a companies TSX symbol to view its visiblity graph.\n" +
-                    "Enter H to view the company list.");
+                               "Enter H to view the company list.");
 
             input = scanner.nextLine();
         }

@@ -49,7 +49,7 @@ public class Crawler {
 			
 			// Was crawled less than 24 hours ago, skip this step.
 			if (todayMilli - lastChanged <= 86400000) {
-				Syste 	m.out.println("Crawler used less than 24 hours ago, " +
+				System.out.println("Crawler used less than 24 hours ago, " +
 								   "will use currently stored data.");
 				return;
 			}

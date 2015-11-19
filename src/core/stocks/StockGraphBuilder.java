@@ -1,14 +1,5 @@
 package core.stocks;
 
-<<<<<<< HEAD
-=======
-import core.components.Edge;
-import core.components.Vertex;
-import core.webcrawler.Crawler;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
-
->>>>>>> fd8efea2ca6d056f255a4286d3d0e8c069513395
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,35 +16,6 @@ import java.util.Collection;
 public class StockGraphBuilder {
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Main program entry point, creates the visibility graph for a specified stock.
-	 * @param args Program arguments (none needed)
-     */
-
-	// Here's a method that can be used to create the vertices for each stock. The
-	// data points stored in a stock vertex are used to
-	public static void main(String[] args) {
-
-		StockGraphBuilder builder = new StockGraphBuilder();
-		VisibilityGraph visGraph = new VisibilityGraph();
-
-		// Use this to get the stock information. It won't crawl if it has
-		// been run in the last 24 hours.
-		Crawler crawler = new Crawler();
-		crawler.crawl();
-
-		Collection<StockVertex> vertices = builder.getStockVertices();
-
-		StockVertex vertex = builder.getVertex(vertices, "AGU");
-		Graph<Vertex, Edge> visibilityGraph = visGraph.createGraph(vertex);
-
-		VisibilityGraphViewer.viewGraph(visibilityGraph);
-
-	}
-
-	/**
->>>>>>> fd8efea2ca6d056f255a4286d3d0e8c069513395
 	 * Loads vertices from file and adds them to the graph
 	 *
 	 * @return - Initialized graph with all vertices
@@ -85,7 +47,7 @@ public class StockGraphBuilder {
 
 			while (line != null) {
 				String[] data = line.split(",");
-				if (data[4] == "") {
+				if (data[4].equals("")) {
 					break;
 				}
 				vertex.addData(Double.valueOf(data[4]));
