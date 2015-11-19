@@ -24,7 +24,11 @@ public class VisibilityGraph {
 
         double[] dataPoints = company.getDataPoints();
 
-        double startPoint = 0.;//dataPoints.length;
+        double startPoint = dataPoints.length - 61;
+
+        if (startPoint < 0) {
+            startPoint = 0.0;
+        }
 
         for (double tA = startPoint; tA < dataPoints.length-1; tA++) {
 
