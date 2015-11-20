@@ -51,6 +51,9 @@ public class Main {
             input = scanner.nextLine();
         }
 
+        System.out.print("Enter the number of days you would like the graph to visualize: ");
+        int numberOfDays = scanner.nextInt();
+
         scanner.close();
         Collection<Company> vertices;
 
@@ -58,7 +61,7 @@ public class Main {
 
             vertices = builder.loadCompanies();
             Company vertex = getVertex(vertices, input);
-            Graph<Vertex, Edge> visibilityGraph = visGraph.createGraph(vertex);
+            Graph<Vertex, Edge> visibilityGraph = visGraph.createGraph(vertex, numberOfDays);
             VisibilityGraphViewer.viewGraph(visibilityGraph);
 
         } catch (IOException e) {

@@ -19,17 +19,19 @@ public class VisibilityGraph {
      * @return A graph representing the visibility graph of a companies
      *         stock history.
      */
-    public Graph<Vertex, Edge> createGraph(Company company) {
+    public Graph<Vertex, Edge> createGraph(Company company, int numberOfDays) {
         Graph<Vertex, Edge> graph = new SparseGraph<>();
 
         double[] dataPoints = company.getDataPoints();
 
-        double startPoint = dataPoints.length - 61;
+        // +1 to account for heading row for data
+        double startPoint = dataPoints.length - (numberOfDays+1);
 
         if (startPoint < 0) {
             startPoint = 0.0;
         }
 
+        // Loop from the first vertex
         for (double tA = startPoint; tA < dataPoints.length-1; tA++) {
 
             int iAdjustedIndex = (int)(tA - startPoint);
@@ -41,6 +43,7 @@ public class VisibilityGraph {
                 graph.addVertex(vertex);
             }
 
+            // Check every vertex starting from the next one after tA
             for (double tB = tA+1; tB < dataPoints.length; tB++) {
 
                 int jAdjustedIndex = (int)(tB - startPoint);
@@ -65,7 +68,7 @@ public class VisibilityGraph {
                 }
 
                 boolean visible = true;
-                // Continue until an obstruction is reached, move to next index when end of neighbourhood reached.
+                // Continue until an obstruction is reached, if no obstruction is recorded we will add an edge
                 for (double tC = tA+1; tC < tB; tC++) {
 
                     double yA = dataPoints[(int)tA];
@@ -82,7 +85,8 @@ public class VisibilityGraph {
 
                 }
 
-                if (visible && !graph.isNeighbor(vertex, nextVertex)) {
+                // Passed every test for tC between tA and tB, add an edge between the vertices
+                if (visible) {
                     graph.addEdge(new Edge(), vertex, nextVertex);
                 }
 
