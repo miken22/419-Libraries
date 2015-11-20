@@ -23,15 +23,15 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        StockGraphBuilder builder = new StockGraphBuilder();
+        CompanyLoader builder = new CompanyLoader();
         VisibilityGraph visGraph = new VisibilityGraph();
 
         // Use this to get the stock information. It won't crawl if it has
         // been run in the last 24 hours.
-		Crawler crawler = new Crawler();
-		crawler.crawl();
+//		Crawler crawler = new Crawler();
+//		crawler.crawl();
 
-        System.out.println("Enter a companies TSX symbol to view its visiblity graph.\n" +
+        System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
                            "Enter H to view the company list.");
 
         Scanner scanner = new Scanner(System.in);
@@ -45,7 +45,7 @@ public class Main {
                 }
             }
 
-            System.out.println("Enter a companies TSX symbol to view its visiblity graph.\n" +
+            System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
                                "Enter H to view the company list.");
 
             input = scanner.nextLine();

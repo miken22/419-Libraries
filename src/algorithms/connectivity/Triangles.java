@@ -10,18 +10,15 @@ import java.util.HashSet;
 /**
  * Methods to implement Task 4 of Assignment 3
  *
- * Count the number of triangles in a graph using
- * node iteration. Based on the paper available at
- * http://i11www.iti.uni-karlsruhe.de/extra/publications/sw-fclt-05_wea.pdf
- * by Thomas Schank and Dorothea Wagner.
- *
  * @author Mike Nowicki on 08/11/15.
  */
 public class Triangles<V,E> {
 
     /**
-     * Computes the number of triangles in a graph using a node
-     * iteration technique.
+     * Count the number of triangles in a graph using
+     * node iteration. Based on the paper available at
+     * http://i11www.iti.uni-karlsruhe.de/extra/publications/sw-fclt-05_wea.pdf
+     * by Thomas Schank and Dorothea Wagner.
      *
      * @param graph The graph to do the search on.
      * @param <V> The vertex type.

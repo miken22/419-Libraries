@@ -1,10 +1,13 @@
 algorithms.clustering
 algorithms.connectivity
+algorithms.distribution
 algorithms.graphloader
 algorithms.search
 algorithms.sorting
 algorithms.spanningtree
 core.components
+core.stocks
 core.tools
 core.visualizer
+core.webcrawler
 generators.random
