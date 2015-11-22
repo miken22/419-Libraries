@@ -2,7 +2,6 @@ package core.stocks;
 
 import core.components.Edge;
 import core.components.Vertex;
-import core.webcrawler.Crawler;
 import edu.uci.ics.jung.graph.Graph;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        CompanyLoader builder = new CompanyLoader();
+        CompanyLoader loader = new CompanyLoader();
         VisibilityGraph visGraph = new VisibilityGraph();
 
         // Use this to get the stock information. It won't crawl if it has
@@ -32,21 +31,21 @@ public class Main {
 //		crawler.crawl();
 
         System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
-                           "Enter H to view the company list.");
+                           "Enter 'h' to view the company list.");
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
         while (!Arrays.asList(TSXCompanies.COMPANIES).contains(input)) {
 
-            if (input.equals("H")) {
+            if (input.toLowerCase().equals("h")) {
                 for (String comp : TSXCompanies.COMPANIES) {
                     System.out.println(comp);
                 }
             }
 
             System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
-                               "Enter H to view the company list.");
+                               "Enter 'h' to view the company list.");
 
             input = scanner.nextLine();
         }
@@ -55,13 +54,12 @@ public class Main {
         int numberOfDays = scanner.nextInt();
 
         scanner.close();
-        Collection<Company> vertices;
 
         try {
 
-            vertices = builder.loadCompanies();
-            Company vertex = getVertex(vertices, input);
-            Graph<Vertex, Edge> visibilityGraph = visGraph.createGraph(vertex, numberOfDays);
+            Collection<Company> companies = loader.loadCompanies();
+            Company comp = getCompany(companies, input);
+            Graph<Vertex, Edge> visibilityGraph = visGraph.createGraph(comp, numberOfDays);
             VisibilityGraphViewer.viewGraph(visibilityGraph);
 
         } catch (IOException e) {
@@ -71,7 +69,7 @@ public class Main {
     }
 
     /********************
-     * Helper methods   *
+     * Helper method    *
      ********************/
 
     /**
@@ -80,7 +78,7 @@ public class Main {
      * @param id The String identifier of the vertex.
      * @return The specified vertex, or null if it does not exist.
      */
-    private static Company getVertex(Collection<Company> vertices, String id) {
+    private static Company getCompany(Collection<Company> vertices, String id) {
         for (Company vertex : vertices) {
             if (vertex.getId().equals(id)) {
                 return vertex;
