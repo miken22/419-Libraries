@@ -19,14 +19,6 @@ public class Company extends Vertex {
 
 	private String company;
 
-	public Company() {
-		dataPoints = new double[140];
-		index = 0;
-		average = 0;
-		max = Integer.MIN_VALUE;
-		min = Integer.MAX_VALUE;
-	}
-
 	public Company(String company, int dataSize) {
 		dataPoints = new double[dataSize];
 		index = 0;
@@ -106,6 +98,10 @@ public class Company extends Vertex {
 
 	@Override
 	public boolean equals(Object otherVertex) {
+
+		if(!(otherVertex instanceof Company)) {
+			return false;
+		}
 
 		Company v = (Company)otherVertex;
 

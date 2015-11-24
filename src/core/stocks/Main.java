@@ -45,7 +45,7 @@ public class Main {
         while (!exit) {
 
             System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
-                    "Enter 'h' to view the company list.");
+                    "Enter -h to view the company list.");
 
             input = scanner.nextLine();
             input = input.toUpperCase();
@@ -53,14 +53,14 @@ public class Main {
             // Input validation
             while (!Arrays.asList(TSXCompanies.COMPANIES).contains(input)) {
 
-                if (input.toLowerCase().equals("h")) {
+                if (input.equals("-h")) {
                     for (String comp : TSXCompanies.COMPANIES) {
                         System.out.println(comp);
                     }
                 }
 
                 System.out.println("Enter a company's TSX symbol to view its visibility graph.\n" +
-                        "Enter 'h' to view the company list.");
+                        "Enter -h to view the company list.");
 
                 input = scanner.nextLine();
             }
@@ -109,8 +109,14 @@ public class Main {
                 case "-cc":
 
                     System.out.println("Which day number do you want to compute the coefficient for:");
-                    int number = scanner.nextInt();
-                    Vertex v = Tools.getVertex(visibilityGraph, "" + number);
+                    String number = scanner.nextLine();
+                    Vertex v = Tools.getVertex(visibilityGraph, number);
+
+                    while (v == null) {
+                        System.out.println("Vertex not found in the graph, try again.");
+                        number = scanner.nextLine();
+                        v = Tools.getVertex(visibilityGraph, number);
+                    }
 
                     Double coeff = Clustering.coefficient(visibilityGraph, v);
                     System.out.println("The clustering coefficient for that vertex is: " + coeff);

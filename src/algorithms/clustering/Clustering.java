@@ -5,6 +5,7 @@ import edu.uci.ics.jung.graph.util.EdgeType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * An implementation of an algorithm that finds
@@ -35,7 +36,7 @@ public class Clustering<V, E> {
             return null;
         }
 
-        if (graph.getEdgeType(graph.getEdges().iterator().next()) == EdgeType.DIRECTED) {
+        if (graph.getDefaultEdgeType() == EdgeType.DIRECTED) {
 
             // If it has one or fewer neighbours it can only have a clustering
             // coefficient of 0.
@@ -45,11 +46,7 @@ public class Clustering<V, E> {
                 return 0.0;
             }
 
-            ArrayList<V> neighbourList = new ArrayList<>();
-
-            for (E edge : graph.getOutEdges(vertex)) {
-                neighbourList.add(graph.getDest(edge));
-            }
+            Collection<V> neighbourList = graph.getSuccessors(vertex);
 
             int edgesBetweenNeighbours = 0;
             // Cycle through neighbours, test if their neighbours are
@@ -57,10 +54,7 @@ public class Clustering<V, E> {
             for (V neighbour : neighbourList) {
 
                 // Get the directed neighbours of the neighbour of vertex
-                ArrayList<V> nextNeighbours = new ArrayList<>();
-                for (E edge : graph.getOutEdges(neighbour)) {
-                    nextNeighbours.add(graph.getDest(edge));
-                }
+                Collection<V> nextNeighbours = graph.getSuccessors(neighbour);
 
                 for (V nextNeighbour : nextNeighbours) {
 
@@ -100,7 +94,14 @@ public class Clustering<V, E> {
     }
 
     /**
-     * Find the average clustering coefficient for the graph.
+     * Find the average clustering coefficient for the graph using the Network average
+     * Clustering Coefficient formula developed by Watts and Strogatz.
+     *
+     * C(G) = (1/n) * Sum{i = 1..n}(C(i))
+     *
+     * Where C(G) is the glocal coefficient, and C(i) is the local coefficient
+     * for vertex i in the graph.
+     *
      * @param graph The graph to compute the average clustering coefficient for.
      * @param <V> The vertex type.
      * @param <E> The edge type.
