@@ -68,20 +68,6 @@ public class Triangles<V,E> {
     }
 
     /**
-     *
-     * @param graph The graph.
-     * @param edge The edge to count in triangles.
-     * @param <V> The vertex type.
-     * @param <E> The edge type.
-     * @return The number of triangles an edge is involved in.
-     */
-    public static<V,E> Integer edgeTriangles(Graph<V,E> graph, E edge) {
-
-
-        return 0;
-    }
-
-    /**
      * Comparator that orders vertices based on their degree. Also
      * used by DegreeDist.
      *

@@ -21,6 +21,8 @@ import java.awt.*;
  */
 public class VisibilityGraphViewer {
 
+	private static JFrame frame;
+
     /**
      * @param graph The graph to visualize
      */
@@ -50,7 +52,7 @@ public class VisibilityGraphViewer {
 
 		vv.setGraphMouse(pm);
 
-		JFrame frame = new JFrame("Simple Graph View");
+		frame = new JFrame("Simple Graph View");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setExtendedState(frame.getExtendedState()|JFrame.MAXIMIZED_BOTH);
 				
@@ -73,6 +75,10 @@ public class VisibilityGraphViewer {
 		frame.pack();
 		frame.setVisible(true); 
 
+	}
+
+	public static void disposeFrame() {
+		frame.dispose();
 	}
 	
 }

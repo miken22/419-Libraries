@@ -34,10 +34,10 @@ public class VisibilityGraph {
         // Loop from the first vertex
         for (double tA = 0; tA < numberOfDays; tA++) {
 
-            Vertex vertex = Tools.getVertex(graph, ""+tA);
+            Vertex vertex = Tools.getVertex(graph, ""+(int)tA);
 
             if (vertex == null) {
-                vertex = new Vertex(""+tA);
+                vertex = new Vertex(""+(int)tA);
                 graph.addVertex(vertex);
             }
 
@@ -46,10 +46,10 @@ public class VisibilityGraph {
 
                 // See if the vertex is in the graph already, use it if it is,
                 // create a new one otherwise.
-                Vertex nextVertex = Tools.getVertex(graph, ""+tB);
+                Vertex nextVertex = Tools.getVertex(graph, ""+(int)tB);
 
                 if (nextVertex == null) {
-                    nextVertex = new Vertex(""+tB);
+                    nextVertex = new Vertex(""+(int)tB);
                     graph.addVertex(nextVertex);
                 }
 

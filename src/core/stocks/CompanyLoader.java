@@ -15,56 +15,49 @@ import java.util.Collection;
  */
 public class CompanyLoader {
 
+
 	/**
-	 * Loads companies from file and adds them to the graph
+	 * Loads a company's closing stock price into a Company object
+	 * that can be used for creating visibility graphs as well as
+	 * running other metrics on the company's data. The date/price
+	 * history is the time series that will be analyzed for the project
 	 *
-	 * @return - Initialized graph with all vertices
+	 * @param company The company stock symbol to load the time series for.
+	 * @return A Company object that can be used to create a visibility graph.
+	 *
 	 * @throws IOException
 	 */
-	public Collection<Company> loadCompanies() throws IOException {
-
-		Collection<Company> companies = new ArrayList<>();
-
-		int minLength = Integer.MAX_VALUE;
+	public Company loadCompany(String company) throws IOException {
 
 		File directory = new File("Results");
-		
-		for (String company : TSXCompanies.COMPANIES) {
+		File file = new File(directory, company+".txt");
 
-			File file = new File(directory, company+".txt");
-			InputStream ins = new FileInputStream(file);
-			BufferedReader reader =  new BufferedReader(new InputStreamReader(ins));
-			//First line is headers, skip to the next line.
-			reader.readLine();
-			String line = reader.readLine();
+		InputStream ins = new FileInputStream(file);
+		BufferedReader reader =  new BufferedReader(new InputStreamReader(ins));
+		//First line is headers, skip to the next line.
+		reader.readLine();
+		String line = reader.readLine();
 
-			int fileLength = getFileLength(file);
-			if (fileLength < minLength) {
-				minLength = fileLength;
+		int fileLength = getFileLength(file);
+
+		Company comp = new Company(company, fileLength);
+
+		while (line != null) {
+			String[] data = line.split(",");
+			if (data[4].equals("")) {
+				break;
 			}
-
-			Company vertex = new Company(company, fileLength);
-
-			while (line != null) {
-				String[] data = line.split(",");
-				if (data[4].equals("")) {
-					break;
-				}
-				vertex.addData(Double.valueOf(data[4]));
-				line = reader.readLine();
-			}
-			reader.close();
-
-			vertex.computeAveragePrice();
-			vertex.computeVariance();
-			vertex.setCompanyName(company);
-
-			companies.add(vertex);
-
+			comp.addData(Double.valueOf(data[4]));
+			line = reader.readLine();
 		}
+		reader.close();
 
-		return companies;
-		
+		comp.computeAveragePrice();
+		comp.computeVariance();
+		comp.setCompanyName(company);
+
+		return comp;
+
 	}
 
 	/**
