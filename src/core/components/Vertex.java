@@ -3,7 +3,7 @@ package core.components;
 import java.util.HashMap;
 
 /**
- * Default vertex class used by the package. Is extended to a StockVertex
+ * Default vertex class used by the package. Is extended to a Company
  * for graphs using the web crawler.
  * 
  * @author Mike Nowicki
