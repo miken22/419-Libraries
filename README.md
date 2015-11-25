@@ -4,36 +4,6 @@ To start using this project download or clone the repository. The jars included 
 to be included in your projects classpath for it to be able to use the JUNG2 libraries, and the DOM4J to
 parse graphml files. Some of the jars are dependencies of others which is why there are quite a few.
 
-# 419A Network Science Project - Visibility Graphs for Financial Markets
-## Done by Michael Nowicki, Colin Barr, Brendan Lensink and Erin van den Brink
-
-In the `core.stocks` package our implementation can be found for creating visibility graphs. A webcrawler
-is run to gather the financial history for the 60 companies traded on the TSX S&P60. Users are able to choose
-which company to create a visibility graph for, and for how many previous days the graph is constructed for.
-
-The `Main` class can be updated to use any of the other network algorithms implemented in this project
-to analyze the network.
-
-# Assignment 3 Work:
-## Done by Michael Nowicki, Colin Barr, Brendan Lensink and Erin van den Brink
-
-For the third assignment we implemented the following tasks:
-
-1. Degree Distribution of a Graph: Calculation and Estimation of Exponent of a Power-Law Degree Distribution.
-
-    Found in the `algorithms.distribution` package in the `DegreeDist` class.
-
-2. Counting Triangles (Node Iteration)
-
-    Found in the `algorithms.connectivity` package in the `Triangles` class. The implementation is based on an
-    alternate node iteration technique for finding triangles in a graph. Link to the paper provided in the class.
-
-3. Split-Graph (Core-Periphery) Editing
-
-    To be added/updated
-
-4. TBA
-
 # Development Style
 
 Please keep classes simple, and preferably static (this is not always possible and is up to me to enforce moving

@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * @author Mike Nowicki
  */
-public class Erdos {
+public class Erdos<V extends Vertex> {
 
     /**
      * Generates an undirected Erdos-Renyi random graph based on the given
@@ -26,7 +26,7 @@ public class Erdos {
      * @return A Erdos-Renyi random graph based on the given
      *         parameters.
      */
-    public static Graph<Vertex, Edge> getGraph(double probability, int n) {
+    public Graph<Vertex, Edge> getGraph(double probability, int n) {
         return getGraph(probability, n, false);
     }
 
@@ -41,7 +41,7 @@ public class Erdos {
      * @return A Erdos-Renyi random graph based on the given
      *         parameters.
      */
-    public static<V extends Vertex> Graph<V, Edge> getGraph(Collection<V> vertexSet, double probability) {
+    public Graph<V, Edge> getGraph(Collection<V> vertexSet, double probability) {
         return getGraph(vertexSet, probability, false);
     }
 
@@ -58,7 +58,7 @@ public class Erdos {
      * @return A Erdos-Renyi random graph based on the given
      *         parameters.
      */
-    public static Graph<Vertex, Edge> getGraph(double probability, int n, boolean isDirected) {
+    public Graph<Vertex, Edge> getGraph(double probability, int n, boolean isDirected) {
 
         Random randomGen = new Random();
         Graph<Vertex, Edge> graph = new SparseGraph<>();
@@ -81,7 +81,11 @@ public class Erdos {
                 double randomNumber = randomGen.nextDouble();
 
                 if (randomNumber <= probability) {
-                    addEdge(graph, sourceVertex, testVertex, edgeId, isDirected);
+                    if (isDirected) {
+                        graph.addEdge(new Edge(""+edgeId), sourceVertex, testVertex, EdgeType.DIRECTED);
+                    } else {
+                        graph.addEdge(new Edge("" + edgeId), sourceVertex, testVertex, EdgeType.UNDIRECTED);
+                    }
                     edgeId++;
                 }
             }
@@ -101,7 +105,7 @@ public class Erdos {
      * @return A Erdos-Renyi random graph based on the given
      *         parameters.
      */
-    public static<V extends Vertex> Graph<V, Edge> getGraph(Collection<V> vertexSet, double probability, boolean isDirected) {
+    public Graph<V, Edge> getGraph(Collection<V> vertexSet, double probability, boolean isDirected) {
 
         Random randomGen = new Random();
         Graph<V, Edge> graph = new SparseGraph<>();
@@ -123,20 +127,16 @@ public class Erdos {
 
                 double randomNumber = randomGen.nextDouble();
                 if (randomNumber <= probability) {
-                    addEdge(graph, sourceVertex, testVertex, edgeId, isDirected);
+                    if (isDirected) {
+                        graph.addEdge(new Edge(""+edgeId), sourceVertex, testVertex, EdgeType.DIRECTED);
+                    } else {
+                        graph.addEdge(new Edge("" + edgeId), sourceVertex, testVertex, EdgeType.UNDIRECTED);
+                    }
                     edgeId++;
                 }
             }
         }
         return graph;
-    }
-
-    private static<V> void addEdge(Graph<V,Edge> graph, V source, V target, int edgeId, boolean isDirected) {
-        if (isDirected) {
-            graph.addEdge(new Edge(""+edgeId), source, target, EdgeType.DIRECTED);
-        } else {
-            graph.addEdge(new Edge("" + edgeId), source, target, EdgeType.UNDIRECTED);
-        }
     }
 
 //    public static void main(String[] args) {
