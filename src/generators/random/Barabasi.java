@@ -25,7 +25,7 @@ public class Barabasi<V> {
      * @return A undirected Barabasi-Albert random graph based on the given
      *         parameters.
      */
-    public static Graph<Vertex,Edge> getGraph(int m, int n) {
+    public Graph<Vertex,Edge> getGraph(int m, int n) {
         return getGraph(m, n, false);
     }
 
@@ -40,7 +40,7 @@ public class Barabasi<V> {
      * @param m The initial number of nodes to append to the graph
      * @return An undirected Barabasi-Albert graph.
      */
-    public static<V> Graph<V, Edge> getGraph(Collection<V> vertices, int m) {
+    public Graph<V, Edge> getGraph(Collection<V> vertices, int m) {
         return getGraph(vertices, m, false);
     }
 
@@ -54,7 +54,7 @@ public class Barabasi<V> {
      * @param isDirected Indicates if edges should be directed or not.
      * @return An undirected Barabasi-Albert graph.
      */
-    public static<V> Graph<V, Edge> getGraph(Collection<V> vertices, int m, boolean isDirected) {
+    public Graph<V, Edge> getGraph(Collection<V> vertices, int m, boolean isDirected) {
         Graph<V, Edge> graph = new SparseGraph<>();
         Random randomGen = new Random();
 
@@ -145,7 +145,7 @@ public class Barabasi<V> {
      * @return A Barabasi-Albert random graph based on the given
      *         parameters.
      */
-    public static Graph<Vertex,Edge> getGraph(int m, int n, boolean isDirected) {
+    public Graph<Vertex,Edge> getGraph(int m, int n, boolean isDirected) {
 
         Graph<Vertex, Edge> graph = new SparseGraph<>();
         Random randomGen = new Random();
