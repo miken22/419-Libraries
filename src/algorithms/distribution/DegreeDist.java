@@ -44,11 +44,16 @@ public class DegreeDist {
      * @param graph The graph to work with.
      * @return The degree distribution as an array where the index is the degree and its value the distribution
      */
-    public static<V,E> double[] degreeDist(Graph<V,E> graph){
-    	// Calculate total degree
-    	int totalDegree = 2*graph.getEdgeCount();
+    public static<V,E> double[] degreeDist(Graph<V,E> graph){    	
+    	int maxDegree = 0;
+    	for(V vertex : graph.getVertices()) {
+    		if(graph.degree(vertex) > maxDegree)
+    		{
+    			maxDegree = graph.degree(vertex);
+    		}
+    	}
     	int numVertices = graph.getVertexCount();
-    	double[] degreeDist = new double[totalDegree];
+    	double[] degreeDist = new double[maxDegree+1];
     	
     	for( V vertex : graph.getVertices()) {
     		double currentDeg = degreeDist[graph.degree(vertex)];
