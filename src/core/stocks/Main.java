@@ -85,66 +85,75 @@ public class Main {
             System.out.println("Would you like to run any metrics on the network? Type -h for a list " +
                                "of metrics that can be run on the network. Enter '-x' to exit.");
             input = scanner.nextLine();
+                       
+            while( !input.equals("-x")){
+            	switch(input) {
+            		case "-h":
+	            		System.out.println("Possible algorithms and metrics, and the argument to provide:");
+	                    System.out.println("Clustering Coefficient : -cc");
+	                    System.out.println("Degree Distribution : -dd");
+	                    System.out.println("Approximating Degree Distribution exponent : -dexp");
+	                    System.out.println("Triangle Counting by Node Iteration : -tc");
+	                    System.out.println("Average degree of the graph: -ad");
+	                    
+	                    break;
+            		 case "-cc":
 
-            if (input.equals("-h")) {
+                         System.out.println("Which day number do you want to compute the coefficient for:");
+                         String number = scanner.nextLine();
+                         Vertex v = Tools.getVertex(visibilityGraph, number);
 
-                System.out.println("Possible algorithms and metrics, and the argument to provide:");
-                System.out.println("Clustering Coefficient : -cc");
-                System.out.println("Degree Distribution : -dd");
-                System.out.println("Approximating Degree Distribution exponent : -dexp");
-                System.out.println("Triangle Counting by Node Iteration : -tc");
+                         while (v == null) {
+                             System.out.println("Vertex not found in the graph, try again.");
+                             number = scanner.nextLine();
+                             v = Tools.getVertex(visibilityGraph, number);
+                         }
 
-                System.out.println("Which metric would you like to run?");
+                         Double coeff = Clustering.coefficient(visibilityGraph, v);
+                         System.out.println("The clustering coefficient for that vertex is: " + coeff);
+                         Double avg = Clustering.average(visibilityGraph);
+                         System.out.println("The average clustering coefficient for the network is: " + avg);
 
-            }
+                         break;
+                     case "-dd":
 
-            input = scanner.nextLine();
+                         System.out.println("What degree would you like to compute the Degree Distribution for?");
+                         int degree = scanner.nextInt();
 
-            while (!Arrays.asList(metrics).contains(input) && !input.equals("-x")) {
-                System.out.println("Please enter a valid argument for the metric, of -x to skip this.");
+                         double dist = DegreeDist.degreeDist(visibilityGraph, degree);
+                         System.out.println("The degree distribution for degree " + degree + " is: " + dist);
+
+                         break;
+                     case "-dexp":
+
+                         double approx = DegreeDist.aprroxExponent(visibilityGraph);
+                         System.out.println("The approximation of the exponent is: " + approx);
+
+                         break;
+                     case "-tc":
+
+                         int triangles = Triangles.count(visibilityGraph);
+                         System.out.println("There are "  + triangles + " in the visibility graph.");
+
+                         break;
+                     case "-ad":
+                     	double avgDegree = DegreeDist.averageDegree(visibilityGraph);
+                     	System.out.println("The average degree of the visibility graph is: " + avgDegree);
+                     	break;
+                     default:
+                    	 input = scanner.nextLine();
+                    	 
+                    	 if( input != "" ){
+                    		 System.out.println("Unrecognized command. Enter '-h' for a list of possible commands " +
+                    				 " or '-x' to exit.");
+                    	 }
+                    	 
+                    	 break;	 
+            	}
+
+                System.out.println("To run another metric enter its command or enter -h for a list " +
+                                   "of metrics that can be run on the network. Enter '-x' to exit.");
                 input = scanner.nextLine();
-            }
-
-            switch (input) {
-                case "-cc":
-
-                    System.out.println("Which day number do you want to compute the coefficient for:");
-                    String number = scanner.nextLine();
-                    Vertex v = Tools.getVertex(visibilityGraph, number);
-
-                    while (v == null) {
-                        System.out.println("Vertex not found in the graph, try again.");
-                        number = scanner.nextLine();
-                        v = Tools.getVertex(visibilityGraph, number);
-                    }
-
-                    Double coeff = Clustering.coefficient(visibilityGraph, v);
-                    System.out.println("The clustering coefficient for that vertex is: " + coeff);
-                    Double avg = Clustering.average(visibilityGraph);
-                    System.out.println("The average clustering coefficient for the network is: " + avg);
-
-                    break;
-                case "-dd":
-
-                    System.out.println("What degree would you like to compute the Degree Distribution for?");
-                    int degree = scanner.nextInt();
-
-                    double dist = DegreeDist.degreeDist(visibilityGraph, degree);
-                    System.out.println("The degree distribution for degree " + degree + " is: " + dist);
-
-                    break;
-                case "-dexp":
-
-                    double approx = DegreeDist.aprroxExponent(visibilityGraph);
-                    System.out.println("The approximation of the exponent is: " + approx);
-
-                    break;
-                case "-tc":
-
-                    int triangles = Triangles.count(visibilityGraph);
-                    System.out.println("There are "  + triangles + " in the visibility graph.");
-
-                    break;
             }
 
             // Option to continue, pops up even though the window is running in the background because
