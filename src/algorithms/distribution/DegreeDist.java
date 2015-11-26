@@ -66,9 +66,7 @@ public class DegreeDist {
     			
     		degreeDist[graph.degree(vertex)]++;
     		degreeDist[graph.degree(vertex)] = degreeDist[graph.degree(vertex)]/numVertices;
-    		
-    		System.out.println(graph.degree(vertex) + " " + degreeDist[graph.degree(vertex)] );
-    	}
+     	}
     	    
     	return degreeDist;
     }
