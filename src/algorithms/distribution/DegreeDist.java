@@ -77,6 +77,23 @@ public class DegreeDist {
         // Return the approximation by taking the resulting sum and adding 1.
         return 1 + sum;
     }
+    
+    /**
+     * Computes the average degree of a graph.
+     * @param graph The graph to use.
+     * @param <V> The vertex type.
+     * @param <E> The edge type.
+     * @return The average degree of all vertices in the graph.
+     */
+    public static<V,E> double averageDegree(Graph<V,E> graph) {
+    	double total = 0;
+    	
+    	for( V vertex : graph.getVertices() )
+		{
+    		total += graph.degree(vertex);
+		}
+    	return total/graph.getVertices().size();
+    }
 
 
 
