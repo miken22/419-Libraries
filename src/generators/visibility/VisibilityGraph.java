@@ -1,7 +1,8 @@
-package core.stocks;
+package generators.visibility;
 
 import core.components.Edge;
 import core.components.Vertex;
+import core.stocks.Company;
 import core.tools.Tools;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;

@@ -2,7 +2,9 @@ package core.stocks;
 
 import core.components.Edge;
 import core.components.Vertex;
+import core.visualizer.VisibilityGraphViewer;
 import edu.uci.ics.jung.graph.Graph;
+import generators.visibility.VisibilityGraph;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * @author Mike Nowicki
  */
-public class Barabasi<V> {
+public class Barabasi {
 
     /**
      * Generates an undirected Barabasi-Albert random graph based on the given
