@@ -38,6 +38,38 @@ public class DegreeDist {
         return (numOfVertices/(double)graph.getVertexCount());
 
     }
+    
+    /**
+     * Calculate the degree distribution for the graph.
+     * @param graph The graph to work with.
+     * @return The degree distribution as an array where the index is the degree and its value the distribution
+     */
+    public static<V,E> double[] degreeDist(Graph<V,E> graph){    	
+    	int maxDegree = 0;
+    	for(V vertex : graph.getVertices()) {
+    		if(graph.degree(vertex) > maxDegree)
+    		{
+    			maxDegree = graph.degree(vertex);
+    		}
+    	}
+    	int numVertices = graph.getVertexCount();
+    	double[] degreeDist = new double[maxDegree+1];
+    	
+    	for( V vertex : graph.getVertices()) {
+    		double currentDeg = degreeDist[graph.degree(vertex)];
+    		
+    		// If we've already added to the count and then calculated the average
+    		// 	we have to undo that average and recalculate.
+    		if(currentDeg != 0 ) {
+    			degreeDist[graph.degree(vertex)] *= numVertices;
+    		}
+    			
+    		degreeDist[graph.degree(vertex)]++;
+    		degreeDist[graph.degree(vertex)] = degreeDist[graph.degree(vertex)]/numVertices;
+     	}
+    	    
+    	return degreeDist;
+    }
 
 
     /**
@@ -77,7 +109,23 @@ public class DegreeDist {
         // Return the approximation by taking the resulting sum and adding 1.
         return 1 + sum;
     }
-
+    
+    /**
+     * Computes the average degree of a graph.
+     * @param graph The graph to use.
+     * @param <V> The vertex type.
+     * @param <E> The edge type.
+     * @return The average degree of all vertices in the graph.
+     */
+    public static<V,E> double averageDegree(Graph<V,E> graph) {
+    	double total = 0;
+    	
+    	for( V vertex : graph.getVertices() )
+		{
+    		total += graph.degree(vertex);
+		}
+    	return total/graph.getVertices().size();
+    }
 
 
 //    public static void main(String[] args) {
@@ -87,9 +135,16 @@ public class DegreeDist {
 //
 //        Vertex v = graph.getVertices().iterator().next();
 //        double dist = DegreeDist.degreeDist(graph, graph.degree(v));
+//        
+//        double[] degDist = DegreeDist.degreeDist(graph);
+//        String distbn = "";
+//        for( int i=0;i<degDist.length; i++) {
+//        	distbn = distbn + ", " + degDist[i];
+//        }
 //
 //        System.out.println("Distribution: " + dist);
 //        System.out.println("Approximation: " + approx);
+//        System.out.println("Degree Dist: " + distbn);
 //
 //    }
 }
