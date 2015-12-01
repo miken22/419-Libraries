@@ -2,10 +2,7 @@ package algorithms.connectivity;
 
 import edu.uci.ics.jung.graph.Graph;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Methods to implement Task 4 of Assignment 3
@@ -34,11 +31,11 @@ public class Triangles<V,E> {
         // Get all vertices and sort them by degree (largest first)
         ArrayList<V> nodeOrdering = new ArrayList<>();
         nodeOrdering.addAll(graph.getVertices());
-        nodeOrdering.sort(new VertexComparator<>(graph));
+        Collections.sort(nodeOrdering, new VertexComparator<>(graph));
 
         // Initialize all sets to be empty
         for (V vertex : graph.getVertices()) {
-            triangleMap.put(vertex, new HashSet<>());
+            triangleMap.put(vertex, new HashSet<V>());
         }
 
         // Iterate over all vertices

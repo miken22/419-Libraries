@@ -1,13 +1,10 @@
 package algorithms.distribution;
 
 import algorithms.connectivity.Triangles;
-import core.components.Edge;
-import core.components.Vertex;
 import edu.uci.ics.jung.graph.Graph;
-import generators.random.Barabasi;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * Implementation of Task 1 for Assignment 3
@@ -85,7 +82,7 @@ public class DegreeDist {
 
         ArrayList<V> vertices = new ArrayList<>();
         vertices.addAll(graph.getVertices());
-        vertices.sort(new Triangles.VertexComparator(graph));
+        Collections.sort(vertices, new Triangles.VertexComparator(graph));
 
         // They are sorted from highest to lowest degree, last element
         // will have the minimum degree in the graph.
